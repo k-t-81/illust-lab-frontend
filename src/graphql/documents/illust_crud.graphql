@@ -1,0 +1,129 @@
+query readIllustrations($groupId: Int!, $offset: Int!) {
+  readIllustrations(groupId: $groupId, offset: $offset) {
+    __typename
+    offset
+    limit
+    illustrations {
+      __typename
+      ... on ControlnetIllustrationType {
+        illustration {
+          id
+          numInferenceSteps
+          guidanceScale
+          controlnetConditioningScale
+          parentImage
+          createdAt
+          updatedAt
+          illustrationPrompt {
+            value
+          }
+          illustrationNegativePrompt {
+            value
+          }
+          illustrationModel {
+            model
+          }
+        }
+        posts {
+          id
+          seed
+          image
+        }
+      }
+      ... on Img2ImgIllustrationType {
+        __typename
+        illustration {
+          id
+          numInferenceSteps
+          guidanceScale
+          strength
+          parentImage
+          createdAt
+          updatedAt
+          illustrationPrompt {
+            value
+          }
+          illustrationNegativePrompt {
+            value
+          }
+          illustrationModel {
+            model
+          }
+        }
+        posts {
+          id
+          seed
+          image
+        }
+      }
+      ... on Txt2ImgIllustrationType {
+        __typename
+        illustration {
+          id
+          numInferenceSteps
+          guidanceScale
+          height
+          width
+          createdAt
+          updatedAt
+          illustrationPrompt {
+            value
+          }
+          illustrationNegativePrompt {
+            value
+          }
+          illustrationModel {
+            model
+          }
+        }
+        posts {
+          id
+          seed
+          image
+        }
+      }
+    }
+  }
+  readIllustrationsCount(groupId: $groupId)
+}
+
+query readIllustrationGroups($offset: Int!) {
+  readIllustrationGroups(offset: $offset) {
+    limit
+    offset
+    illustrationPostGroups {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+  }
+  readIllustrationGroupsCount
+}
+
+query readIllustrationGroup($id: Int!) {
+  readIllustrationGroup(id: $id) {
+    id
+    name
+    createdAt
+    updatedAt
+  }
+}
+
+mutation createIllustrationGroup($input: CreateIllustrationPostGroupInput!) {
+  createIllustrationGroup(input: $input) {
+    id
+    name
+  }
+}
+
+mutation updateIllustrationGroup($input: UpdateIllustrationPostGroupInput!) {
+  updateIllustrationGroup(input: $input) {
+    id
+    name
+  }
+}
+
+mutation deleteIllustrationGroup($input: DeleteIllustrationPostGroupInput!) {
+  deleteIllustrationGroup(input: $input)
+}

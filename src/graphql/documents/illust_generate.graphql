@@ -1,0 +1,11 @@
+mutation generateTxt2ImgIllustration($input: Txt2ImgIllustrationGenerateInput!) {
+  generateTxt2imgIllustration(input: $input)
+}
+
+mutation generateImg2ImgIllustration($input: Img2ImgIllustrationGenerateInput!) {
+  generateImg2imgIllustration(input: $input)
+}
+
+mutation generateControlnetIllustration($input: ControlnetIllustrationGenerateInput!) {
+  generateControlnetIllustration(input: $input)
+}
